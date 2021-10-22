@@ -1,9 +1,9 @@
-module.exports = { //多页面打包
+module.exports = { // 多页面打包
   publicPath: './',
   pages: {
     main: {
       // page 的入口
-      entry: 'src/modules/main/main.js',
+      entry: 'src/modules/form/form.js',
       // 模板来源
       template: 'public/main.html',
       // 在 dist/index.html 的输出
