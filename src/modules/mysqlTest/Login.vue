@@ -9,6 +9,8 @@
     <el-form-item>
       <el-button type="primary" @click="submitForm('loginForm')">login</el-button>
       <el-button @click="resetForm('loginForm')">重置</el-button>
+      <router-link to="/finished">已完成</router-link>
+      <router-view/>
     </el-form-item>
   </el-form>
 </template>
