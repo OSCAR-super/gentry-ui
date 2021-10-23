@@ -15,7 +15,15 @@
 
 <script>
 import axios from 'axios'
+import { getCurrentInstance } from 'vue'
 export default {
+  setup () {
+    const { proxy } = getCurrentInstance()
+    console.log(proxy.$router)
+    return {
+      proxy
+    }
+  },
   data () {
     var validateuser = (rule, value, callback) => {
       if (value === '') {
@@ -51,7 +59,8 @@ export default {
   },
   methods: {
     submitForm (formName) {
-      console.log(this)
+      console.log(this.proxy.$router)
+      const that = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // alert('submit!');
@@ -63,7 +72,7 @@ export default {
           }).then(res => {
             console.log(res)
             if (res.data.state === 1) {
-              this.$router.push({
+              that.proxy.$router.push({
                 path: '/finished'
               })
             } else {
@@ -80,7 +89,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>
