@@ -3,6 +3,19 @@ import { app, BrowserWindow, ipcMain, Tray, Menu, screen } from 'electron'
 
 const path = require('path')
 const iconPath = path.join(__static, 'icon.png')
+const routerApi = require('./server/router');
+const bodyParser = require('body-parser'); // post 数据需要
+const express = require('express');
+const apps = express();
+
+apps.use(bodyParser.json());
+
+// 后端api路由
+apps.use('/api', routerApi);
+
+// 监听端口
+apps.listen(3000);
+console.log('success listen at port:3000......');
 
 let mainWindow
 let tray
@@ -10,7 +23,7 @@ let remindWindow
 
 app.on('ready', async () => {
   mainWindow = new BrowserWindow({
-    frame: false,
+    frame: true,
     resizable: false,
     width: 800,
     height: 600,
